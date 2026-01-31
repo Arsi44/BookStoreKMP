@@ -10,7 +10,7 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import org.muhammadsayed.bookstorecmp.data.datasource.local.BookEntity
 import org.muhammadsayed.bookstorecmp.domain.model.BookDomainModel
-import org.muhammadsayed.bookstorecmp.shared.data.cache.sqldelight.AppDatabase
+import com.analystlab.app.shared.data.cache.sqldelight.AppDatabase
 import org.muhammadsayed.bookstorecmp.utils.DatabaseDriverFactory
 
 interface BookDao {

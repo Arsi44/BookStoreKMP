@@ -2,7 +2,7 @@ package org.muhammadsayed.bookstorecmp
 
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
-import org.muhammadsayed.bookstorecmp.shared.data.cache.sqldelight.AppDatabase
+import com.analystlab.app.shared.data.cache.sqldelight.AppDatabase
 
 
 actual class TestSqlDriverFactory {

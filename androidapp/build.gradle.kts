@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.muhammadsayed.androidapp"
+    namespace = "com.analystlab.app"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.muhammadsayed.androidapp"
+        applicationId = "com.analystlab.app"
         minSdk = 25
         targetSdk = 34
         versionCode = 1

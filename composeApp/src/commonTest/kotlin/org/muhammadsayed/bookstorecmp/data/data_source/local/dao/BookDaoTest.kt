@@ -6,7 +6,7 @@ import app.cash.sqldelight.coroutines.mapToOne
 import app.cash.turbine.test
 import kotlinx.coroutines.test.runTest
 import org.muhammadsayed.bookstorecmp.TestSqlDriverFactory
-import org.muhammadsayed.bookstorecmp.shared.data.cache.sqldelight.AppDatabase
+import com.analystlab.app.shared.data.cache.sqldelight.AppDatabase
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals

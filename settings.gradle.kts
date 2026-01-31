@@ -1,4 +1,4 @@
-rootProject.name = "BookStoreCMP"
+rootProject.name = "AnalystLab"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {

@@ -1,35 +1,26 @@
- ![BookStore](https://github.com/abualgait/BookStoreKMP/assets/38107393/a68e240d-e467-415d-b543-5d7a8caa9f9c)
+### Android
 
-# BookStoreKMP 
+#### Запуск эмулятора
 
-## Overview 🚀
+```powershell
 
+# Запустить FAST APi
+cd "C:\Users\arsi44\Desktop\Projects with potential\analyst-lab"
+.\venv\Scripts\Activate.ps1 
+python -m src.main
 
-Welcome to the BookStoreKMP repository! This kotlin-platform project showcases the integration of cutting-edge technologies and demonstrates a sleek UI design using Jetpack Compose for Android, Ktor for network communication, SqlDelight for database persistence, and Koin for dependency injection.
+# Запустить эмулятор (например Pixel_9)
+& "$env:LOCALAPPDATA\Android\Sdk\emulator\emulator.exe" -avd Pixel_9
 
-Supports: Android 📱, iOS 📱, WearOS ⌚ and TV 📺.
+# собрать приложение
+ cd "C:\Users\arsi44\Desktop\Projects with potential\analyst-lab\BookStoreKMP"
+.\gradlew.bat :androidapp:installDebug
 
-## Features ✨
+# Запустить приложение
+& "$env:LOCALAPPDATA\Android\Sdk\platform-tools\adb.exe" shell am start -n com.analystlab.app/.MainActivity
 
-- 🏗 **Clean Architecture** 
-- 🎨 **Compose Multiplatform**  
-- 🚀 **Kotlin Multiplatform (KMP)**
-- 🗄️ **Coroutines & Flow** 
-- 🗄️ **SQLDelight (Database)**
-- 🚀 **Ktor (Networking)**
-- 🚀 **Koin (DI)**
-- 🚀 **PreCompose (Navigation)**
-- 🚀 **Image Loader**
-  
+# Логи в реальном времени
+& "$env:LOCALAPPDATA\Android\Sdk\platform-tools\adb.exe" logcat
 
-## API & Design File:
-- Design: https://www.figma.com/community/file/1187676718154727707/bookstore-app
-- API: https://openlibrary.org/developers/api
-
-## Connect with Me 🌐
-
-Let's connect! Feel free to reach out on LinkedIn.
-
-LinkedIn: https://www.linkedin.com/in/abualgait/
-
-Happy coding! 🚀✨
+\
+```

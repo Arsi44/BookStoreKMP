@@ -101,7 +101,7 @@ kotlin {
 }
 
 android {
-    namespace = "org.muhammadsayed.bookstorecmp"
+    namespace = "com.analystlab.app"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
@@ -141,7 +141,7 @@ dependencies {
 sqldelight {
     databases {
         create("AppDatabase") {
-            packageName.set("org.muhammadsayed.bookstorecmp.shared.data.cache.sqldelight")
+            packageName.set("com.analystlab.app.shared.data.cache.sqldelight")
             srcDirs.setFrom("src/commonMain/kotlin")
         }
     }
@@ -149,11 +149,11 @@ sqldelight {
 
 compose.desktop {
     application {
-        mainClass = "MainKt"
+        mainClass = "com.analystlab.app.MainKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "org.muhammadsayed.bookstorecmp"
+            packageName = "com.analystlab.app"
             packageVersion = "1.0.0"
         }
     }

@@ -9,7 +9,7 @@ import kotlinx.datetime.toLocalDateTime
 import org.muhammadsayed.bookstorecmp.TestSqlDriverFactory
 import org.muhammadsayed.bookstorecmp.data.data_source.local.dao.BookDao
 import org.muhammadsayed.bookstorecmp.domain.model.BookDomainModel
-import org.muhammadsayed.bookstorecmp.shared.data.cache.sqldelight.AppDatabase
+import com.analystlab.app.shared.data.cache.sqldelight.AppDatabase
 
 class FakeDao : BookDao {
     private val sqlDriver = TestSqlDriverFactory().create()
