@@ -14,11 +14,11 @@ import kotlinx.serialization.Serializable
 class ModulesApi(private val httpClient: HttpClient) {
     
     suspend fun getModules(): List<ModuleDomainModel> {
-        return httpClient.get("/api/modules").body()
+        return httpClient.get("/api/mobile/modules").body()
     }
     
     suspend fun getModule(moduleId: String): ModuleDomainModel {
-        return httpClient.get("/api/modules/$moduleId").body()
+        return httpClient.get("/api/mobile/modules/$moduleId").body()
     }
     
     suspend fun getStats(token: String): StatsDomainModel {

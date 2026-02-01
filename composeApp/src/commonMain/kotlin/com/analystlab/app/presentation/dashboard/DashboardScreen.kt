@@ -110,8 +110,22 @@ fun DashboardScreen(
                 contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                // Header
+                // Приветствие
                 item {
+                    Text(
+                        text = "Добро пожаловать в AnalystLab! 👋",
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = "Выберите модуль из списка, чтобы начать обучение",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Color.Gray
+                    )
+                }
+                item {
+                    Spacer(modifier = Modifier.height(16.dp))
                     Text(
                         text = "Моя статистика",
                         style = MaterialTheme.typography.headlineSmall,
@@ -119,16 +133,22 @@ fun DashboardScreen(
                     )
                 }
                 
-                // Stats
+                // Статистика (логика как в десктопе):
+                // — Всего модулей: число модулей в курсе
+                // — Завершено: модули, у которых ВСЕ активности отмечены выполненными
+                // — В процессе: модули, у которых ЕСТЬ хотя бы одна выполненная активность, но не все
                 item {
                     StatsRow(
                         progressPercent = state.stats.progressPercent,
-                        sqlQueriesCount = state.stats.sqlQueriesCount,
-                        diagramsCount = state.stats.diagramsCount
+                        totalModules = state.modules.size,
+                        completedModules = state.modules.count { it.completed },
+                        inProgressModules = state.modules.count { m ->
+                            !m.completed && m.activities.any { it.completed }
+                        }
                     )
                 }
                 
-                // Current module header
+                // Текущий модуль
                 if (state.currentModule != null) {
                     item {
                         Spacer(modifier = Modifier.height(8.dp))
@@ -138,7 +158,6 @@ fun DashboardScreen(
                             fontWeight = FontWeight.SemiBold
                         )
                     }
-                    
                     item {
                         ModuleCard(
                             module = state.currentModule!!,
@@ -146,24 +165,6 @@ fun DashboardScreen(
                             onClick = { onModuleClick(state.currentModule!!) }
                         )
                     }
-                }
-                
-                // All modules
-                item {
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text(
-                        text = "Все модули курса",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.SemiBold
-                    )
-                }
-                
-                items(state.modules) { module ->
-                    ModuleCard(
-                        module = module,
-                        isSelected = module.id == state.currentModule?.id,
-                        onClick = { onModuleClick(module) }
-                    )
                 }
             }
         }

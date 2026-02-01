@@ -45,11 +45,11 @@ fun ModuleCard(
         modifier = modifier
             .fillMaxWidth()
             .clickable { onClick() },
-        shape = RoundedCornerShape(16.dp),
+        shape = RoundedCornerShape(20.dp),
         colors = CardDefaults.cardColors(
-            containerColor = if (isSelected) PrimaryBlue.copy(alpha = 0.1f) else Color.White
+            containerColor = if (isSelected) Color(0xFFEFF6FF) else Color.White
         ),
-        elevation = CardDefaults.cardElevation(defaultElevation = if (isSelected) 4.dp else 2.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
         Row(
             modifier = Modifier
@@ -57,19 +57,18 @@ fun ModuleCard(
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Status icon
             if (module.completed) {
                 Icon(
                     imageVector = Icons.Filled.CheckCircle,
                     contentDescription = null,
                     tint = SuccessGreen,
-                    modifier = Modifier.size(24.dp)
+                    modifier = Modifier.size(28.dp)
                 )
             } else {
                 Box(
                     modifier = Modifier
-                        .size(24.dp)
-                        .border(2.dp, Color.LightGray, CircleShape)
+                        .size(28.dp)
+                        .border(2.5.dp, Color(0xFFE5E7EB), CircleShape)
                 )
             }
             

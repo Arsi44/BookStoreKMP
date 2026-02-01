@@ -267,18 +267,19 @@ fun ActivityCard(
                 }
             }
             
-            // Action button
+            // Action button - компактная версия
             Button(
                 onClick = onClick,
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = PrimaryBlue
+                    containerColor = if (activity.completed) Color.LightGray else PrimaryBlue,
+                    contentColor = if (activity.completed) Color.DarkGray else Color.White
                 ),
                 shape = RoundedCornerShape(8.dp),
-                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp)
             ) {
                 Text(
-                    text = if (activity.completed) "Повторить" else "Начать",
-                    fontSize = 12.sp
+                    text = if (activity.completed) "↻" else "▶",
+                    fontSize = 16.sp
                 )
             }
         }

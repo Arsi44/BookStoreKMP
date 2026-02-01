@@ -1,5 +1,6 @@
 package com.analystlab.app.presentation.dashboard.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -35,9 +36,9 @@ fun StatsCard(
 ) {
     Card(
         modifier = modifier,
-        shape = RoundedCornerShape(16.dp),
+        shape = RoundedCornerShape(20.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
         Row(
             modifier = Modifier
@@ -60,12 +61,11 @@ fun StatsCard(
                     color = Color.Black
                 )
             }
-            
             Box(
                 modifier = Modifier
                     .size(48.dp)
                     .background(
-                        color = backgroundColor.copy(alpha = 0.15f),
+                        color = backgroundColor.copy(alpha = 0.2f),
                         shape = RoundedCornerShape(12.dp)
                     ),
                 contentAlignment = Alignment.Center
@@ -80,43 +80,105 @@ fun StatsCard(
 }
 
 @Composable
+fun BigStatsCard(
+    title: String,
+    value: String,
+    icon: String,
+    borderColor: Color,
+    iconBackgroundColor: Color,
+    modifier: Modifier = Modifier
+) {
+    Card(
+        modifier = modifier,
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
+        border = BorderStroke(2.dp, borderColor)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Color.Gray
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = value,
+                    style = MaterialTheme.typography.headlineMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
+                )
+            }
+            Box(
+                modifier = Modifier
+                    .size(48.dp)
+                    .background(
+                        color = iconBackgroundColor.copy(alpha = 0.25f),
+                        shape = RoundedCornerShape(12.dp)
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(text = icon, fontSize = 24.sp)
+            }
+        }
+    }
+}
+
+@Composable
 fun StatsRow(
     progressPercent: Int,
-    sqlQueriesCount: Int,
-    diagramsCount: Int,
+    totalModules: Int,
+    completedModules: Int,
+    inProgressModules: Int,
     modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        StatsCard(
+        BigStatsCard(
             title = "Процент пройденного материала",
             value = "$progressPercent%",
             icon = "📊",
-            backgroundColor = PrimaryBlue,
+            borderColor = PrimaryBlue,
+            iconBackgroundColor = PrimaryBlue,
             modifier = Modifier.fillMaxWidth()
         )
-        
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            StatsCard(
-                title = "SQL-запросов",
-                value = "$sqlQueriesCount",
-                icon = "💾",
-                backgroundColor = SuccessGreen,
+            BigStatsCard(
+                title = "Всего модулей",
+                value = "$totalModules",
+                icon = "📚",
+                borderColor = Color(0xFFBFDBFE),
+                iconBackgroundColor = PrimaryBlue,
                 modifier = Modifier.weight(1f)
             )
-            
-            StatsCard(
-                title = "Диаграмм",
-                value = "$diagramsCount",
-                icon = "📈",
-                backgroundColor = Color(0xFF8B5CF6),
+            BigStatsCard(
+                title = "Завершено",
+                value = "$completedModules",
+                icon = "✓",
+                borderColor = Color(0xFFBBF7D0),
+                iconBackgroundColor = SuccessGreen,
                 modifier = Modifier.weight(1f)
             )
         }
+        BigStatsCard(
+            title = "В процессе",
+            value = "$inProgressModules",
+            icon = "⏱",
+            borderColor = Color(0xFFFEF08A),
+            iconBackgroundColor = Color(0xFFF59E0B),
+            modifier = Modifier.fillMaxWidth()
+        )
     }
 }

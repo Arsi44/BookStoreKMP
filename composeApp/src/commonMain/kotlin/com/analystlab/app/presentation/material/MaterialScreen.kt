@@ -177,45 +177,31 @@ fun MaterialScreen(
                     }
                 }
                 
-                // Bottom action
+                // Bottom action - адаптивная панель
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
                     colors = CardDefaults.cardColors(containerColor = Color.White),
                     elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                 ) {
-                    Row(
+                    Column(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(16.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
-                        Button(
-                            onClick = onBack,
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = Color.Transparent,
-                                contentColor = Color.Gray
-                            )
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.ArrowBack,
-                                contentDescription = null,
-                                modifier = Modifier.size(18.dp)
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text("Назад к модулю")
-                        }
-                        
+                        // Кнопка "Отметить как прочитано" - основное действие
                         if (state.isMarkedAsRead) {
                             Button(
                                 onClick = {},
                                 enabled = false,
+                                modifier = Modifier.fillMaxWidth(),
                                 colors = ButtonDefaults.buttonColors(
                                     containerColor = Color.LightGray,
                                     contentColor = Color.Gray
                                 ),
-                                shape = RoundedCornerShape(12.dp)
+                                shape = RoundedCornerShape(12.dp),
+                                contentPadding = PaddingValues(vertical = 14.dp)
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Check,
@@ -229,10 +215,12 @@ fun MaterialScreen(
                             Button(
                                 onClick = { viewModel.onEvent(MaterialEvent.MarkAsRead) },
                                 enabled = !state.isMarkingAsRead,
+                                modifier = Modifier.fillMaxWidth(),
                                 colors = ButtonDefaults.buttonColors(
                                     containerColor = SuccessGreen
                                 ),
-                                shape = RoundedCornerShape(12.dp)
+                                shape = RoundedCornerShape(12.dp),
+                                contentPadding = PaddingValues(vertical = 14.dp)
                             ) {
                                 if (state.isMarkingAsRead) {
                                     CircularProgressIndicator(
@@ -250,6 +238,25 @@ fun MaterialScreen(
                                 Spacer(modifier = Modifier.width(8.dp))
                                 Text("Отметить как прочитано")
                             }
+                        }
+                        
+                        // Кнопка "Назад" - вторичное действие
+                        Button(
+                            onClick = onBack,
+                            modifier = Modifier.fillMaxWidth(),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color.Transparent,
+                                contentColor = Color.Gray
+                            ),
+                            contentPadding = PaddingValues(vertical = 12.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.ArrowBack,
+                                contentDescription = null,
+                                modifier = Modifier.size(18.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text("Назад к модулю")
                         }
                     }
                 }
