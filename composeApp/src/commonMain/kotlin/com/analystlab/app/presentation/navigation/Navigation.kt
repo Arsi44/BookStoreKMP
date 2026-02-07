@@ -9,6 +9,8 @@ import com.analystlab.app.domain.repository.AuthRepository
 import com.analystlab.app.presentation.dashboard.DashboardScreen
 import com.analystlab.app.presentation.material.MaterialScreen
 import com.analystlab.app.presentation.module.ModuleScreen
+import com.analystlab.app.presentation.modules.ModulesScreen
+import com.analystlab.app.presentation.placeholder.ComingSoonScreen
 import com.analystlab.app.presentation.settings.SettingsScreen
 
 @Composable
@@ -35,12 +37,7 @@ fun Navigation(
         
         // Modules List Screen (same as Dashboard for now)
         scene(NavigationItem.Modules.route) {
-            DashboardScreen(
-                navigator = navigator,
-                onModuleClick = { module ->
-                    navigator.navigate("/module/${module.id}")
-                }
-            )
+            ModulesScreen(navigator = navigator)
         }
         
         // Module Detail Screen
@@ -53,7 +50,7 @@ fun Navigation(
                         navigator.navigate("/material/$id")
                     },
                     onTestClick = { id ->
-                        // Тест пока не реализован
+                        navigator.navigate("/test/$id")
                     }
                 )
             }
@@ -66,6 +63,28 @@ fun Navigation(
                     navigator = navigator,
                     moduleId = moduleId,
                     onBack = { navigator.goBack() }
+                )
+            }
+        }
+
+        // Test Screen (placeholder)
+        scene(NavigationItem.Test.route) { backStackEntry ->
+            backStackEntry.path<String>("moduleId")?.let { moduleId ->
+                ComingSoonScreen(
+                    navigator = navigator,
+                    title = "Тест",
+                    subtitle = "Модуль: $moduleId"
+                )
+            }
+        }
+
+        // Oral answer Screen (placeholder)
+        scene(NavigationItem.Oral.route) { backStackEntry ->
+            backStackEntry.path<String>("moduleId")?.let { moduleId ->
+                ComingSoonScreen(
+                    navigator = navigator,
+                    title = "Устный ответ",
+                    subtitle = "Модуль: $moduleId"
                 )
             }
         }

@@ -117,12 +117,6 @@ fun DashboardScreen(
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold
                     )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(
-                        text = "Выберите модуль из списка, чтобы начать обучение",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = Color.Gray
-                    )
                 }
                 item {
                     Spacer(modifier = Modifier.height(16.dp))

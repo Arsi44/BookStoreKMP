@@ -12,14 +12,21 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.AccessTime
+import androidx.compose.material.icons.outlined.AutoStories
+import androidx.compose.material.icons.outlined.CheckCircle
+import androidx.compose.material.icons.outlined.PieChart
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -83,7 +90,8 @@ fun StatsCard(
 fun BigStatsCard(
     title: String,
     value: String,
-    icon: String,
+    icon: ImageVector,
+    iconTint: Color,
     borderColor: Color,
     iconBackgroundColor: Color,
     modifier: Modifier = Modifier
@@ -125,7 +133,12 @@ fun BigStatsCard(
                     ),
                 contentAlignment = Alignment.Center
             ) {
-                Text(text = icon, fontSize = 24.sp)
+                Icon(
+                    imageVector = icon,
+                    contentDescription = title,
+                    tint = iconTint,
+                    modifier = Modifier.size(28.dp)
+                )
             }
         }
     }
@@ -146,7 +159,8 @@ fun StatsRow(
         BigStatsCard(
             title = "Процент пройденного материала",
             value = "$progressPercent%",
-            icon = "📊",
+            icon = Icons.Outlined.PieChart,
+            iconTint = PrimaryBlue,
             borderColor = PrimaryBlue,
             iconBackgroundColor = PrimaryBlue,
             modifier = Modifier.fillMaxWidth()
@@ -158,7 +172,8 @@ fun StatsRow(
             BigStatsCard(
                 title = "Всего модулей",
                 value = "$totalModules",
-                icon = "📚",
+                icon = Icons.Outlined.AutoStories,
+                iconTint = PrimaryBlue,
                 borderColor = Color(0xFFBFDBFE),
                 iconBackgroundColor = PrimaryBlue,
                 modifier = Modifier.weight(1f)
@@ -166,7 +181,8 @@ fun StatsRow(
             BigStatsCard(
                 title = "Завершено",
                 value = "$completedModules",
-                icon = "✓",
+                icon = Icons.Outlined.CheckCircle,
+                iconTint = SuccessGreen,
                 borderColor = Color(0xFFBBF7D0),
                 iconBackgroundColor = SuccessGreen,
                 modifier = Modifier.weight(1f)
@@ -175,7 +191,8 @@ fun StatsRow(
         BigStatsCard(
             title = "В процессе",
             value = "$inProgressModules",
-            icon = "⏱",
+            icon = Icons.Outlined.AccessTime,
+            iconTint = Color(0xFFF59E0B),
             borderColor = Color(0xFFFEF08A),
             iconBackgroundColor = Color(0xFFF59E0B),
             modifier = Modifier.fillMaxWidth()

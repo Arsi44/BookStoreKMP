@@ -18,4 +18,5 @@ sealed class NavigationItem(
     data object Module : NavigationItem("/module/{id}", "Модуль", null)
     data object Material : NavigationItem("/material/{moduleId}", "Материал", null)
     data object Test : NavigationItem("/test/{moduleId}", "Тест", null)
+    data object Oral : NavigationItem("/oral/{moduleId}", "Устный ответ", null)
 }
